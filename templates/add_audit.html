@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Add Audit</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+<label>Audit Name</label>
+<input class="form-control" name="audit_name">
+</div>
+
+<div class="mb-3">
+<label>Auditor</label>
+<input class="form-control" name="auditor">
+</div>
+
+<div class="mb-3">
+<label>Department</label>
+<input class="form-control" name="department">
+</div>
+
+<div class="mb-3">
+<label>Date</label>
+<input class="form-control" type="date" name="audit_date">
+</div>
+
+<div class="mb-3">
+<label>Status</label>
+
+<select class="form-select" name="status">
+
+<option>Scheduled</option>
+
+<option>Running</option>
+
+<option>Completed</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+<label>Findings</label>
+<textarea class="form-control" name="findings"></textarea>
+</div>
+
+<button class="btn btn-primary">
+
+Save Audit
+
+</button>
+
+</form>
+
+{% endblock %}

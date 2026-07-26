@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+Evidence Repository
+
+</h2>
+
+<a href="/add-evidence" class="btn btn-success mb-3">
+
+Add Evidence
+
+</a>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+<th>Title</th>
+<th>Audit</th>
+<th>Type</th>
+<th>Upload Date</th>
+<th>Description</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for evidence in evidences %}
+
+<tr>
+
+<td>{{ evidence.id }}</td>
+
+<td>{{ evidence.title }}</td>
+
+<td>{{ evidence.audit_name }}</td>
+
+<td>
+
+{% if evidence.evidence_type=="PDF" %}
+
+<span class="badge bg-danger">
+
+PDF
+
+</span>
+
+{% elif evidence.evidence_type=="Image" %}
+
+<span class="badge bg-primary">
+
+Image
+
+</span>
+
+{% elif evidence.evidence_type=="Excel" %}
+
+<span class="badge bg-success">
+
+Excel
+
+</span>
+
+{% elif evidence.evidence_type=="Log File" %}
+
+<span class="badge bg-warning text-dark">
+
+Log
+
+</span>
+
+{% else %}
+
+<span class="badge bg-secondary">
+
+Document
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>{{ evidence.upload_date }}</td>
+
+<td>{{ evidence.description }}</td>
+
+<td>
+
+<a href="/edit-evidence/{{ evidence.id }}"
+class="btn btn-warning btn-sm">
+
+Edit
+
+</a>
+
+<a href="/delete-evidence/{{ evidence.id }}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Delete this evidence?')">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

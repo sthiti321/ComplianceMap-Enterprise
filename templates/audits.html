@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+Audit Management
+
+</h2>
+
+<a href="/add-audit" class="btn btn-success mb-3">
+
+Add Audit
+
+</a>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+
+<th>Audit</th>
+
+<th>Auditor</th>
+
+<th>Department</th>
+
+<th>Date</th>
+
+<th>Status</th>
+
+<th>Findings</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for audit in audits %}
+
+<tr>
+
+<td>{{ audit.id }}</td>
+
+<td>{{ audit.audit_name }}</td>
+
+<td>{{ audit.auditor }}</td>
+
+<td>{{ audit.department }}</td>
+
+<td>{{ audit.audit_date }}</td>
+
+<td>
+
+{% if audit.status=="Completed" %}
+
+<span class="badge bg-success">
+
+Completed
+
+</span>
+
+{% elif audit.status=="Running" %}
+
+<span class="badge bg-warning text-dark">
+
+Running
+
+</span>
+
+{% else %}
+
+<span class="badge bg-primary">
+
+Scheduled
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>{{ audit.findings }}</td>
+
+<td>
+
+<a href="/edit-audit/{{ audit.id }}"
+class="btn btn-warning btn-sm">
+
+Edit
+
+</a>
+
+<a href="/delete-audit/{{ audit.id }}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Delete this audit?')">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

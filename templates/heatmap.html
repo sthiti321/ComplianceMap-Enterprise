@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Risk Heat Map</h2>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<table class="table table-bordered text-center align-middle">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Impact \ Probability</th>
+
+<th>Low</th>
+
+<th>Medium</th>
+
+<th>High</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for impact in ["High","Medium","Low"] %}
+
+<tr>
+
+<th>{{ impact }}</th>
+
+{% for probability in ["Low","Medium","High"] %}
+
+<td style="height:120px; vertical-align:top;">
+
+{% for risk in risks %}
+
+{% if risk.impact==impact and risk.probability==probability %}
+
+<div class="mb-2">
+
+{% if risk.risk_score>=7 %}
+
+<div class="alert alert-danger p-2">
+
+<strong>{{ risk.risk_name }}</strong><br>
+
+Score: {{ risk.risk_score }}
+
+</div>
+
+{% elif risk.risk_score>=4 %}
+
+<div class="alert alert-warning p-2">
+
+<strong>{{ risk.risk_name }}</strong><br>
+
+Score: {{ risk.risk_score }}
+
+</div>
+
+{% else %}
+
+<div class="alert alert-success p-2">
+
+<strong>{{ risk.risk_name }}</strong><br>
+
+Score: {{ risk.risk_score }}
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endif %}
+
+{% endfor %}
+
+</td>
+
+{% endfor %}
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

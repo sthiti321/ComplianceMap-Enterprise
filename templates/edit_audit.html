@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Edit Audit
+</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label class="form-label">Audit Name</label>
+        <input
+            type="text"
+            class="form-control"
+            name="audit_name"
+            value="{{ audit.audit_name }}"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Auditor</label>
+        <input
+            type="text"
+            class="form-control"
+            name="auditor"
+            value="{{ audit.auditor }}"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Department</label>
+        <input
+            type="text"
+            class="form-control"
+            name="department"
+            value="{{ audit.department }}"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Audit Date</label>
+        <input
+            type="date"
+            class="form-control"
+            name="audit_date"
+            value="{{ audit.audit_date }}"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+
+        <select class="form-select" name="status">
+
+            <option value="Scheduled"
+            {% if audit.status=="Scheduled" %}selected{% endif %}>
+            Scheduled
+            </option>
+
+            <option value="Running"
+            {% if audit.status=="Running" %}selected{% endif %}>
+            Running
+            </option>
+
+            <option value="Completed"
+            {% if audit.status=="Completed" %}selected{% endif %}>
+            Completed
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Findings</label>
+
+        <textarea
+            class="form-control"
+            name="findings"
+            rows="4">{{ audit.findings }}</textarea>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Update Audit
+    </button>
+
+    <a href="/audits" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+
+{% endblock %}

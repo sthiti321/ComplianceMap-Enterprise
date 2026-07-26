@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Edit Risk</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+<label>Risk Name</label>
+<input
+type="text"
+name="risk_name"
+class="form-control"
+value="{{ risk.risk_name }}"
+required>
+</div>
+
+<div class="mb-3">
+<label>Owner</label>
+<input
+type="text"
+name="owner"
+class="form-control"
+value="{{ risk.owner }}"
+required>
+</div>
+
+<div class="mb-3">
+
+<label>Severity</label>
+
+<select name="severity" class="form-select">
+
+<option {% if risk.severity=="Low" %}selected{% endif %}>Low</option>
+
+<option {% if risk.severity=="Medium" %}selected{% endif %}>Medium</option>
+
+<option {% if risk.severity=="High" %}selected{% endif %}>High</option>
+
+<option {% if risk.severity=="Critical" %}selected{% endif %}>Critical</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Status</label>
+
+<select name="status" class="form-select">
+
+<option {% if risk.status=="Open" %}selected{% endif %}>Open</option>
+
+<option {% if risk.status=="In Progress" %}selected{% endif %}>In Progress</option>
+
+<option {% if risk.status=="Closed" %}selected{% endif %}>Closed</option>
+
+</select>
+
+</div>
+
+<button class="btn btn-primary">
+
+Update Risk
+
+</button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Add Evidence</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+<label>Title</label>
+<input class="form-control" name="title" required>
+</div>
+
+<div class="mb-3">
+<label>Audit Name</label>
+<input class="form-control" name="audit_name" required>
+</div>
+
+<div class="mb-3">
+<label>Evidence Type</label>
+
+<select class="form-select" name="evidence_type">
+
+<option>PDF</option>
+
+<option>Image</option>
+
+<option>Log File</option>
+
+<option>Excel</option>
+
+<option>Document</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+<label>Upload Date</label>
+<input type="date" class="form-control" name="upload_date">
+</div>
+
+<div class="mb-3">
+<label>Description</label>
+<textarea class="form-control" name="description"></textarea>
+</div>
+
+<button class="btn btn-primary">
+
+Save Evidence
+
+</button>
+
+</form>
+
+{% endblock %}

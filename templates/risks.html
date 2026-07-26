@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+Risk Register
+
+</h2>
+
+<a href="/add-risk" class="btn btn-success mb-3">
+
+Add Risk
+
+</a>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+<th>Risk</th>
+<th>Owner</th>
+<th>Severity</th>
+<th>Probability</th>
+<th>Impact</th>
+<th>Risk Score</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for risk in risks %}
+
+<tr>
+
+<td>{{ risk.id }}</td>
+
+<td>{{ risk.risk_name }}</td>
+
+<td>{{ risk.owner }}</td>
+
+<td>
+
+{% if risk.severity == "Critical" %}
+
+<span class="badge bg-dark">
+
+Critical
+
+</span>
+
+{% elif risk.severity == "High" %}
+
+<span class="badge bg-danger">
+
+High
+
+</span>
+
+{% elif risk.severity == "Medium" %}
+
+<span class="badge bg-warning text-dark">
+
+Medium
+
+</span>
+
+{% else %}
+
+<span class="badge bg-success">
+
+Low
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>{{ risk.probability }}</td>
+
+<td>{{ risk.impact }}</td>
+
+<td>
+
+{% if risk.risk_score >= 7 %}
+
+<span class="badge bg-danger">
+
+{{ risk.risk_score }}
+
+</span>
+
+{% elif risk.risk_score >= 4 %}
+
+<span class="badge bg-warning text-dark">
+
+{{ risk.risk_score }}
+
+</span>
+
+{% else %}
+
+<span class="badge bg-success">
+
+{{ risk.risk_score }}
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if risk.status == "Open" %}
+
+<span class="badge bg-danger">
+
+Open
+
+</span>
+
+{% elif risk.status == "Closed" %}
+
+<span class="badge bg-success">
+
+Closed
+
+</span>
+
+{% else %}
+
+<span class="badge bg-warning text-dark">
+
+In Progress
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+<a href="/edit-risk/{{ risk.id }}" class="btn btn-warning btn-sm">
+
+Edit
+
+</a>
+
+<a href="/delete-risk/{{ risk.id }}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Delete this risk?')">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

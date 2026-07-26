@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+Edit Evidence
+
+</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label>Title</label>
+
+<input
+class="form-control"
+name="title"
+value="{{ evidence.title }}"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Audit Name</label>
+
+<input
+class="form-control"
+name="audit_name"
+value="{{ evidence.audit_name }}"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Evidence Type</label>
+
+<select class="form-select" name="evidence_type">
+
+<option value="PDF"
+{% if evidence.evidence_type=="PDF" %}selected{% endif %}>
+PDF
+</option>
+
+<option value="Image"
+{% if evidence.evidence_type=="Image" %}selected{% endif %}>
+Image
+</option>
+
+<option value="Excel"
+{% if evidence.evidence_type=="Excel" %}selected{% endif %}>
+Excel
+</option>
+
+<option value="Log File"
+{% if evidence.evidence_type=="Log File" %}selected{% endif %}>
+Log File
+</option>
+
+<option value="Document"
+{% if evidence.evidence_type=="Document" %}selected{% endif %}>
+Document
+</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Upload Date</label>
+
+<input
+type="date"
+class="form-control"
+name="upload_date"
+value="{{ evidence.upload_date }}">
+
+</div>
+
+<div class="mb-3">
+
+<label>Description</label>
+
+<textarea
+class="form-control"
+name="description"
+rows="4">{{ evidence.description }}</textarea>
+
+</div>
+
+<button class="btn btn-primary">
+
+Update Evidence
+
+</button>
+
+<a href="/evidence" class="btn btn-secondary">
+
+Cancel
+
+</a>
+
+</form>
+
+{% endblock %}

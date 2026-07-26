@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4 fw-bold">
+    Dashboard
+</h1>
+
+<!-- ================= KPI CARDS ================= -->
+
+<div class="row g-4">
+
+    <div class="col-md-3">
+        <div class="card stat-card blue shadow">
+            <div class="card-body text-center">
+                <i class="bi bi-shield-fill-check display-5"></i>
+                <h5 class="mt-3">Total Risks</h5>
+                <h2>{{ total_risks }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card stat-card red shadow">
+            <div class="card-body text-center">
+                <i class="bi bi-exclamation-triangle-fill display-5"></i>
+                <h5 class="mt-3">Open Risks</h5>
+                <h2>{{ open_risks }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card stat-card green shadow">
+            <div class="card-body text-center">
+                <i class="bi bi-file-earmark-check-fill display-5"></i>
+                <h5 class="mt-3">Audits</h5>
+                <h2>{{ total_audits }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card stat-card orange shadow">
+            <div class="card-body text-center">
+                <i class="bi bi-patch-check-fill display-5"></i>
+                <h5 class="mt-3">Compliance</h5>
+                <h2>{{ compliance_score }}%</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= CHARTS ================= -->
+
+<div class="row mt-5">
+
+    <div class="col-lg-7">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                Risk Distribution
+            </div>
+
+            <div class="card-body">
+                <canvas id="riskChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-5">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-success text-white">
+                Compliance Status
+            </div>
+
+            <div class="card-body">
+                <canvas id="complianceChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= TOP RISKS ================= -->
+
+<div class="row mt-4">
+
+    <div class="col-lg-12">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-dark text-white">
+                🔥 Top 5 Highest Risk Items
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-hover">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Risk</th>
+                        <th>Owner</th>
+                        <th>Severity</th>
+                        <th>Score</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for risk in top_risks %}
+
+                    <tr>
+
+                        <td>{{ risk.risk_name }}</td>
+
+                        <td>{{ risk.owner }}</td>
+
+                        <td>{{ risk.severity }}</td>
+
+                        <td>
+
+                            {% if risk.risk_score >= 7 %}
+
+                                <span class="badge bg-danger">
+                                    {{ risk.risk_score }}
+                                </span>
+
+                            {% elif risk.risk_score >= 4 %}
+
+                                <span class="badge bg-warning text-dark">
+                                    {{ risk.risk_score }}
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-success">
+                                    {{ risk.risk_score }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script id="risk-data" type="application/json">
+{{ {
+    'critical': critical,
+    'high': high,
+    'medium': medium,
+    'low': low,
+    'compliance': compliance_score
+} | tojson }}
+</script>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+{% endblock %}
