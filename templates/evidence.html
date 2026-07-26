@@ -26,6 +26,7 @@ Add Evidence
 <th>Type</th>
 <th>Upload Date</th>
 <th>Description</th>
+<th>File</th>
 <th>Actions</th>
 
 </tr>
@@ -93,6 +94,27 @@ Document
 <td>{{ evidence.upload_date }}</td>
 
 <td>{{ evidence.description }}</td>
+
+<td>
+
+{% if evidence.file_name %}
+
+<a
+href="{{ url_for('uploaded_file', filename=evidence.file_name) }}"
+target="_blank"
+class="btn btn-outline-primary btn-sm">
+
+Download
+
+</a>
+
+{% else %}
+
+-
+
+{% endif %}
+
+</td>
 
 <td>
 
