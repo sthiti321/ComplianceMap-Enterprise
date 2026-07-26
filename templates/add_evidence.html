@@ -4,7 +4,7 @@
 
 <h2 class="mb-4">Add Evidence</h2>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 
 <div class="mb-3">
 <label>Title</label>
@@ -43,6 +43,14 @@
 <div class="mb-3">
 <label>Description</label>
 <textarea class="form-control" name="description"></textarea>
+</div>
+
+<div class="mb-3">
+    <label>Upload File</label>
+    <input
+        type="file"
+        class="form-control"
+        name="file">
 </div>
 
 <button class="btn btn-primary">

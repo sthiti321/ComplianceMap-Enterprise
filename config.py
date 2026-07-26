@@ -6,3 +6,4 @@ class Config:
     SECRET_KEY = "ComplianceMap2026"
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(BASE_DIR, "database_v3.db")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    UPLOAD_FOLDER = "uploads"

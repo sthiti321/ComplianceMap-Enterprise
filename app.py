@@ -69,6 +69,8 @@ class Evidence(db.Model):
 
     description = db.Column(db.String(300))
 
+    file_name = db.Column(db.String(300))
+
 
 # ------------------------
 # ROUTES
