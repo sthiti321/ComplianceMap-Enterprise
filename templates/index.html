@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid vh-100">
+
+    <div class="row h-100">
+
+        <!-- Left Side -->
+
+        <div class="col-lg-7 d-none d-lg-flex align-items-center justify-content-center bg-primary text-white">
+
+            <div class="text-center px-5">
+
+                <h1 class="display-3 fw-bold">
+                    ComplianceMap
+                </h1>
+
+                <h2 class="fw-light">
+                    Enterprise GRC Platform
+                </h2>
+
+                <p class="lead mt-4">
+
+                    Governance • Risk • Compliance
+
+                </p>
+
+                <hr class="my-4">
+
+                <div class="row mt-5">
+
+                    <div class="col-md-6 mb-4">
+
+                        <div class="card bg-light text-dark shadow">
+
+                            <div class="card-body">
+
+                                <h4>⚠️ Risk Management</h4>
+
+                                <p>
+                                    Track, score and monitor enterprise risks.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <div class="card bg-light text-dark shadow">
+
+                            <div class="card-body">
+
+                                <h4>📋 Audit Management</h4>
+
+                                <p>
+                                    Schedule and manage compliance audits.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <div class="card bg-light text-dark shadow">
+
+                            <div class="card-body">
+
+                                <h4>📁 Evidence Repository</h4>
+
+                                <p>
+                                    Store documents, screenshots and reports.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <div class="card bg-light text-dark shadow">
+
+                            <div class="card-body">
+
+                                <h4>📊 Dashboard Analytics</h4>
+
+                                <p>
+                                    Visualize compliance and risk trends.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% if error %}
+
+<div class="alert alert-danger">
+
+{{ error }}
+
+</div>
+
+{% endif %}
+
+        <!-- Login -->
+
+        <div class="col-lg-5 d-flex align-items-center justify-content-center bg-light">
+
+            <div class="card shadow-lg border-0 p-4" style="width:430px;">
+
+                <div class="text-center mb-4">
+
+                    <h2 class="fw-bold">
+
+                        Welcome Back
+
+                    </h2>
+
+                    <p class="text-muted">
+
+                        Sign in to ComplianceMap Enterprise
+
+                    </p>
+
+                </div>
+
+                <form method="POST" action="/login">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Email
+
+                        </label>
+
+                        <input
+                        type="text"
+                        class="form-control"
+                        name="username"
+                        placeholder="username"
+                        required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Password
+
+                        </label>
+
+                        <input
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        placeholder="password"
+                        required>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+
+                        <div>
+
+                            <input
+                            type="checkbox">
+
+                            Remember Me
+
+                        </div>
+
+                        <a href="#">
+
+                            Forgot Password?
+
+                        </a>
+
+                    </div>
+
+                    <button
+                    class="btn btn-primary w-100 btn-lg">
+
+                        Login
+
+                    </button>
+
+                </form>
+
+                <hr>
+
+                <div class="text-center text-muted">
+
+                    ComplianceMap Enterprise v1.0
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
